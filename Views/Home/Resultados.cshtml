@@ -1,0 +1,29 @@
+﻿@page
+@using Cadastro_a.Services
+@using Cadastro_a.Models;
+@using Microsoft.AspNetCore.Mvc;
+@using System.Diagnostics;
+
+
+@{
+    
+    ViewData["Title"] = "Resultados";
+
+    // Instanciar o serviço FormatarDados
+    var service = new FormatarDados();
+
+    // Receber os dados do modelo
+    string nome = nomeFormatado;
+    string endereco = enderecoFormatado;
+    string telefone = telefoneFormatado;
+
+    // Formatar os dados usando o serviço
+    string dadosFormatados = service.FormatarDados(nome, endereco, telefone);
+}
+
+<div class="container">
+    <h1 class="display-4">Resultados</h1>
+
+    <!-- Exibir os dados formatados -->
+    <div>@Html.Raw(dadosFormatados)</div>
+</div>
