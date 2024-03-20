@@ -1,6 +1,7 @@
 using Cadastro_a.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Cadastro_a.Services;
 
 namespace Cadastro_a.Controllers
 {
@@ -15,15 +16,28 @@ namespace Cadastro_a.Controllers
 
         public IActionResult Index()
         {
+            
             return View();
         }
 
-        public IActionResult Resultados()
+       
+        public IActionResult Resultados(string nomeFormatado, string enderecoFormatado, string telefoneFormatado)
         {
+            // Instanciar o serviço FormatacaoService
+            var dadosFormatadosService = new FormatacaoService();
+
+            // Formatar os dados usando o serviço
+            var dadosFormatados = dadosFormatadosService.FormatarDados(nomeFormatado, enderecoFormatado, telefoneFormatado);
+
+            // Passar os dados formatados para a view
+            ViewBag.DadosFormatados = dadosFormatados;
+
             return View();
         }
+    
 
-        public IActionResult Privacy()
+
+    public IActionResult Privacy()
         {
             return View();
         }
